@@ -1,0 +1,43 @@
+[project]
+name = "Bouquet"
+description = "A decentralized cross-platform chat application, and nothing more."
+version = "0.1.0"
+natures = [ "eclipse", "maven" ]
+
+[dependencies]
+lilac = { type = "fetchFromGithub", username = "Khyonie", repository = "Lilac", tag = "v2.1.0-beta.1" }
+
+lwjgl        = { type = "fetchFromMaven", group_id = "org.lwjgl", artifact_id = "lwjgl" }
+lwjgl-glfw   = { type = "fetchFromMaven", group_id = "org.lwjgl", artifact_id = "lwjgl-glfw" }
+lwjgl-openal = { type = "fetchFromMaven", group_id = "org.lwjgl", artifact_id = "lwjgl-openal" }
+lwjgl-opengl = { type = "fetchFromMaven", group_id = "org.lwjgl", artifact_id = "lwjgl-opengl" }
+lwjgl-stb    = { type = "fetchFromMaven", group_id = "org.lwjgl", artifact_id = "lwjgl-stb" }
+
+# Natives
+lwjgl_natives-linux          = { type = "fetchFromMaven", group_id = "org.lwjgl", artifact_id = "lwjgl", classifier = "natives-linux" }
+lwjgl-glfw_natives-linux     = { type = "fetchFromMaven", group_id = "org.lwjgl", artifact_id = "lwjgl-glfw", classifier = "natives-linux" }
+lwjgl-openal_natives-linux   = { type = "fetchFromMaven", group_id = "org.lwjgl", artifact_id = "lwjgl-openal", classifier = "natives-linux" }
+lwjgl-opengl_natives-linux   = { type = "fetchFromMaven", group_id = "org.lwjgl", artifact_id = "lwjgl-opengl", classifier = "natives-linux" }
+lwjgl-stb_natives-linux      = { type = "fetchFromMaven", group_id = "org.lwjgl", artifact_id = "lwjgl-stb", classifier = "natives-linux" }
+lwjgl_natives-windows        = { type = "fetchFromMaven", group_id = "org.lwjgl", artifact_id = "lwjgl", classifier = "natives-windows" }
+lwjgl-glfw_natives-windows   = { type = "fetchFromMaven", group_id = "org.lwjgl", artifact_id = "lwjgl-glfw", classifier = "natives-windows" }
+lwjgl-openal_natives-windows = { type = "fetchFromMaven", group_id = "org.lwjgl", artifact_id = "lwjgl-openal", classifier = "natives-windows" }
+lwjgl-opengl_natives-windows = { type = "fetchFromMaven", group_id = "org.lwjgl", artifact_id = "lwjgl-opengl", classifier = "natives-windows" }
+lwjgl-stb_natives-windows    = { type = "fetchFromMaven", group_id = "org.lwjgl", artifact_id = "lwjgl-stb", classifier = "natives-windows" }
+
+[configuration.main]
+sources = [ "src/api/", "src/main/" ]
+shaded  = [ "lilac" ]
+includes = [ "shader/" ]
+entry   = "coffee.khyonieheart.bouquet.BouquetApp"
+compiler_flags.release_target = 21
+
+[configuration.linux]
+inherit      = "main"
+dependencies = [ "lilac", "lwjgl", "lwjgl-glfw", "lwjgl-openal", "lwjgl-opengl", "lwjgl-stb", "lwjgl_natives-linux", "lwjgl-glfw_natives-linux", "lwjgl-openal_natives-linux", "lwjgl-opengl_natives-linux", "lwjgl-stb_natives-linux" ]
+targets      = [ "targets/{configuration}/Bouquet-{version}-{configuration}.jar" ]
+
+[configuration.windows]
+inherit      = "main"
+dependencies = [ "lilac", "lwjgl", "lwjgl-glfw", "lwjgl-openal", "lwjgl-opengl", "lwjgl-stb", "lwjgl_natives-windows", "lwjgl-glfw_natives-windows", "lwjgl-openal_natives-linux", "lwjgl-opengl_natives-linux", "lwjgl-stb_natives-linux" ]
+targets      = [ "targets/{configuration}/Bouquet-{version}-{configuration}.jar" ]
