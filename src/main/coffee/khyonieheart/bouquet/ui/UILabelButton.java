@@ -29,19 +29,8 @@ public class UILabelButton extends UIBaseElement
 	@Override
 	public void render(RenderContainer container, Renderer renderer) 
 	{
-		int stateFg = switch (this.getState()) {
-			case IDLE -> UIStyle.getCurrentStyle().getLabelButtonForegroundIdle();
-			case HOVER -> UIStyle.getCurrentStyle().getLabelButtonForegroundIdle();
-			case CLICKED -> UIStyle.getCurrentStyle().getLabelButtonForegroundIdle();
-			case INACTIVE -> UIStyle.getCurrentStyle().getLabelButtonForegroundIdle();
-		};
-
-		int stateBg = switch (this.getState()) {
-			case IDLE -> UIStyle.getCurrentStyle().getLabelButtonBackgroundIdle();
-			case HOVER -> UIStyle.getCurrentStyle().getLabelButtonBackgroundIdle();
-			case CLICKED -> UIStyle.getCurrentStyle().getLabelButtonBackgroundIdle();
-			case INACTIVE -> UIStyle.getCurrentStyle().getLabelButtonBackgroundIdle();
-		};
+		int stateFg = UIStyle.getInt("label-button." + this.getState().name().toLowerCase() + ".fg");
+		int stateBg = UIStyle.getInt("label-button." + this.getState().name().toLowerCase() + ".bg");
 
 		renderer.drawRoundedRectangle(this.getEffectiveX(), this.getEffectiveY(), this.getWidth(), this.getHeight(), stateBg, radius);
 		int textX = (this.getEffectiveX() + (this.getWidth() / 2) - (this.font.getStringLength(this.label) / 2));
@@ -65,6 +54,18 @@ public class UILabelButton extends UIBaseElement
 		if (this.getState() == UIState.HOVER && UIManager.isHighestLayer(this) && container.getInput().isLeftMouseClicked())
 		{
 			this.setState(UIState.CLICKED);
+		}
+	}
+
+	@Override
+	public void changeState(UIState state) 
+	{
+		switch (state)
+		{
+			case CLICKED -> {}
+			case HOVER -> {}
+			case IDLE -> {}
+			case INACTIVE -> {}
 		}
 	}
 }

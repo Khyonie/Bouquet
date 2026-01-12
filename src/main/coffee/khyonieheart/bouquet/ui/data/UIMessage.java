@@ -9,6 +9,7 @@ import coffee.khyonieheart.bouquet.font.Font;
 import coffee.khyonieheart.bouquet.ui.AnchorPoint;
 import coffee.khyonieheart.bouquet.ui.UIBaseElement;
 import coffee.khyonieheart.bouquet.ui.UIImage;
+import coffee.khyonieheart.bouquet.ui.UIState;
 import coffee.khyonieheart.bouquet.ui.UIStyle;
 import coffee.khyonieheart.bouquet.ui.UIText;
 
@@ -27,11 +28,11 @@ public class UIMessage extends UIBaseElement
 		this.message = message;
 
 		UIImage uiPfp = new UIImage(message.getSender().getProfilePicture(), 10, 0, 64, 64, 15, 1);
-		UIText uiUsername = new UIText(message.getSender().getEffectiveName(), 84, 0, UIStyle.getStyle().getUsernameFont(), message.getSender().getColor(), 1);
+		UIText uiUsername = new UIText(message.getSender().getEffectiveName(), 84, 0, UIStyle.getFont("message-box.message.font-bold"), message.getSender().getColor(), 1);
 
-		Font messageFont = UIStyle.getStyle().getMessageFont();
-		UIText uiMessage = new UIText(message.getMessage(), 84, Math.round(messageFont.getFontHeight() * messageFont.getScale()), messageFont, UIStyle.getStyle().getMessageColor(), 1);
-		UIText uiTimestamp = new UIText(message.getTime().format(DATE_TIME_FORMAT), 10, -2, UIStyle.getStyle().getTimestampFont(), UIStyle.getStyle().getTimestampColor(), 1);
+		Font messageFont = UIStyle.getFont("message-box.message.font-regular");
+		UIText uiMessage = new UIText(message.getMessage(), 84, Math.round(messageFont.getFontHeight() * messageFont.getScale()), messageFont, UIStyle.getInt("message-box.message.color"), 1);
+		UIText uiTimestamp = new UIText(message.getTime().format(DATE_TIME_FORMAT), 10, -2, UIStyle.getFont("message-box.message.timestamp.font"), UIStyle.getInt("message-box.message.timestamp.color"), 1);
 
 		this.anchor(uiPfp.setAnchorPoint(AnchorPoint.TOP_LEFT))
 			.anchor(uiUsername.setAnchorPoint(AnchorPoint.TOP_LEFT))
@@ -50,6 +51,18 @@ public class UIMessage extends UIBaseElement
 	public void tick(RenderContainer container, Renderer renderer) 
 	{
 		this.tick(container, renderer);
+	}
+
+	@Override
+	public void changeState(UIState state) 
+	{
+		switch (state)
+		{
+			case CLICKED -> {}
+			case HOVER -> {}
+			case IDLE -> {}
+			case INACTIVE -> {}
+		}
 	}
 
 	public Message getMessage()

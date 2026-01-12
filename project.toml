@@ -5,7 +5,7 @@ version = "0.1.0"
 natures = [ "eclipse", "maven" ]
 
 [dependencies]
-lilac = { type = "fetchFromGithub", username = "Khyonie", repository = "Lilac", tag = "v2.1.0-beta.1" }
+lilac = { type = "fetchFromGithub", username = "Khyonie", repository = "Lilac", tag = "v2.1.2", asset = "Lilac-2.1.2-main" }
 
 lwjgl        = { type = "fetchFromMaven", group_id = "org.lwjgl", artifact_id = "lwjgl" }
 lwjgl-glfw   = { type = "fetchFromMaven", group_id = "org.lwjgl", artifact_id = "lwjgl-glfw" }
@@ -30,6 +30,7 @@ sources = [ "src/api/", "src/main/" ]
 shaded  = [ "lilac" ]
 includes = [ "shader/" ]
 entry   = "coffee.khyonieheart.bouquet.BouquetApp"
+java_version = 21
 compiler_flags.release_target = 21
 
 [configuration.linux]

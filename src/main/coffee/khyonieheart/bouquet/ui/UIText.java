@@ -48,4 +48,16 @@ public class UIText extends UIBaseElement
 	{
 		this.updateChildren(container, renderer);
 	}
+
+	@Override
+	public void changeState(UIState state) 
+	{
+		switch (state)
+		{
+			case CLICKED -> {}
+			case HOVER -> {}
+			case IDLE -> {}
+			case INACTIVE -> {}
+		}
+	}
 }

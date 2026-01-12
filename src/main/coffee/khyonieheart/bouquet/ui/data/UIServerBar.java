@@ -88,4 +88,16 @@ public class UIServerBar extends UIBaseElement
 			this.setState(UIState.CLICKED);
 		}
 	}
+
+	@Override
+	public void changeState(UIState state) 
+	{
+		switch (state)
+		{
+			case CLICKED -> {}
+			case HOVER -> {}
+			case IDLE -> {}
+			case INACTIVE -> {}
+		}
+	}
 }

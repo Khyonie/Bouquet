@@ -4,6 +4,7 @@ import coffee.khyonieheart.bouquet.engine.RenderContainer;
 import coffee.khyonieheart.bouquet.engine.Renderer;
 import coffee.khyonieheart.bouquet.ui.UIBaseElement;
 import coffee.khyonieheart.bouquet.ui.UIState;
+import coffee.khyonieheart.bouquet.ui.UIStyle;
 
 public class UIChannelBox extends UIBaseElement
 {
@@ -25,7 +26,7 @@ public class UIChannelBox extends UIBaseElement
 	@Override
 	public void render(RenderContainer container, Renderer renderer) 
 	{
-		renderer.drawRectangle(this.getEffectiveX(), this.getEffectiveY(), this.getWidth(), this.getHeight(), 0x363636FF);
+		renderer.drawRectangle(this.getEffectiveX(), this.getEffectiveY(), this.getWidth(), this.getHeight(), UIStyle.getInt("channel-box.bg"));
 		renderer.drawRectangle(this.getEffectiveX() + this.getWidth() - 1, this.getEffectiveY(), 1, this.getHeight(), 0x101010FF);
 		this.renderChildren(container, renderer);
 	}

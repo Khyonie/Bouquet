@@ -1,0 +1,48 @@
+# This is the stylesheet for Bouquet.
+# All colors are written as a 32-bit hex integer (0xRRGGBBAA).
+
+# Label buttons
+[label-button]
+idle.fg = 0xD0D0D0FF
+idle.bg = 0x363636FF
+hover.fg = 0xD0D0D0FF
+hover.bg = 0x565656FF
+clicked.fg = 0xD0D0D0FF
+clicked.bg = 0x868686FF
+inactive.fg = 0x808080FF
+inactive.bg = 0x363636FF
+
+# Entire message box style
+[message-box]
+top-left-bg = 0x363636FF
+top-right-bg = 0x363636FF
+bottom-right-bg = 0x4B394DFF
+bottom-left-bg = 0x565656FF
+
+# Individual message style
+[message-box.message]
+color = 0xD0D0D0FF
+font-regular = { path = "font/Nunito-Regular.ttf", point = 32 }
+font-bold = { path = "font/Nunito-Bold.ttf", point = 32 }
+font-italic = { path = "font/Nunito-Italic.ttf", point = 32 }
+font-bolditalic = { path = "font/Nunito-BoldItalic.ttf", point = 32 }
+
+# Message timestamp style
+[message-box.message.timestamp]
+color = 0xA0A0A0FF
+font = { path = "font/Nunito-LightItalic.ttf", point = 24 }
+
+# Channel box style
+[channel-box]
+bg = 0x363636FF
+
+# Server bar style
+[server-bar]
+font = { path = "font/Nunito-Regular.ttf", point = 32 }
+fg = 0x505050FF
+
+[server-bar.hover-box]
+bg = 0x404040FF
+bg-border = 0x808080FF
+fg = 0xCCCCCCFF
+font = { path = "font/Nunito-Bold.ttf", point = 32 }

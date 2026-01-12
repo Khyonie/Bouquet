@@ -7,7 +7,6 @@ import coffee.khyonieheart.bouquet.data.Server;
 import coffee.khyonieheart.bouquet.engine.RenderContainer;
 import coffee.khyonieheart.bouquet.engine.Renderer;
 import coffee.khyonieheart.bouquet.engine.UIManager;
-import coffee.khyonieheart.bouquet.font.Font;
 import coffee.khyonieheart.bouquet.ui.AnchorPoint;
 import coffee.khyonieheart.bouquet.ui.UIBaseElement;
 import coffee.khyonieheart.bouquet.ui.UIState;
@@ -54,7 +53,7 @@ public class UIServerBarEntry extends UIBaseElement
 		//-------------------------------------------------------------------------------- 
 		float[] hsvColor = Color.rgbToHsv(BASE_SERVER_COLOR);
 		Color.hueShift(hsvColor, hueShift);
-		float[] desaturatedColor = new float[] { hsvColor[0], hsvColor[1] * 0.1f, hsvColor[2] };
+		float[] desaturatedColor = new float[] { hsvColor[0], hsvColor[1] * 0.1f, hsvColor[2], hsvColor[3] };
 		float[] hueAdjustedColor = Color.rgbToHsv(BASE_SERVER_COLOR);
 		Color.hueShift(hueAdjustedColor, hueShift + 60f);
 
@@ -64,23 +63,23 @@ public class UIServerBarEntry extends UIBaseElement
 		this.bottomRightColorIdle = Color.hsvToRgb(hueAdjustedColor);
 
 		// Hover
-		this.topColorHover = Color.hsvToRgb(new float[] { hsvColor[0], hsvColor[1] * 0.8f, 1f });
-		this.bottomLeftColorHover = Color.hsvToRgb(new float[] { desaturatedColor[0], desaturatedColor[1] * 0.8f, 1f });
-		this.bottomRightColorHover = Color.hsvToRgb(new float[] { hueAdjustedColor[0], hueAdjustedColor[1] * 0.8f, 1f });
+		this.topColorHover = Color.hsvToRgb(new float[] { hsvColor[0], hsvColor[1] * 0.8f, 1f, hsvColor[3] });
+		this.bottomLeftColorHover = Color.hsvToRgb(new float[] { desaturatedColor[0], desaturatedColor[1] * 0.8f, 1f, hsvColor[3] });
+		this.bottomRightColorHover = Color.hsvToRgb(new float[] { hueAdjustedColor[0], hueAdjustedColor[1] * 0.8f, 1f, hsvColor[3] });
 		
 		// Clicked
-		this.topColorClicked = Color.hsvToRgb(new float[] { hsvColor[0], hsvColor[1] * 0.5f, 1f });
-		this.bottomLeftColorClicked = Color.hsvToRgb(new float[] { desaturatedColor[0], desaturatedColor[1] * 0.5f, 1f });
-		this.bottomRightColorClicked = Color.hsvToRgb(new float[] { hueAdjustedColor[0], hueAdjustedColor[1] * 0.5f, 1f });
+		this.topColorClicked = Color.hsvToRgb(new float[] { hsvColor[0], hsvColor[1] * 0.5f, 1f, hsvColor[3] });
+		this.bottomLeftColorClicked = Color.hsvToRgb(new float[] { desaturatedColor[0], desaturatedColor[1] * 0.5f, 1f, hsvColor[3] });
+		this.bottomRightColorClicked = Color.hsvToRgb(new float[] { hueAdjustedColor[0], hueAdjustedColor[1] * 0.5f, 1f, hsvColor[3] });
 		
 		// Inactive
-		this.topColorInactive = Color.hsvToRgb(new float[] { hsvColor[0], hsvColor[1] * 0.5f, hsvColor[2] * 0.8f });
-		this.bottomLeftColorInactive = Color.hsvToRgb(new float[] { desaturatedColor[0], desaturatedColor[1] * 0.5f, desaturatedColor[2] * 0.8f });
-		this.bottomRightColorInactive = Color.hsvToRgb(new float[] { hueAdjustedColor[0], hueAdjustedColor[1] * 0.5f, hueAdjustedColor[2] * 0.8f });
+		this.topColorInactive = Color.hsvToRgb(new float[] { hsvColor[0], hsvColor[1] * 0.5f, hsvColor[2] * 0.8f, hsvColor[3] });
+		this.bottomLeftColorInactive = Color.hsvToRgb(new float[] { desaturatedColor[0], desaturatedColor[1] * 0.5f, desaturatedColor[2] * 0.8f, hsvColor[3] });
+		this.bottomRightColorInactive = Color.hsvToRgb(new float[] { hueAdjustedColor[0], hueAdjustedColor[1] * 0.5f, hueAdjustedColor[2] * 0.8f, hsvColor[3] });
 		//--------------------------------------------------------------------------------
 
 		// Label
-		UIText text = new UIText(shortName, 0, 0, UIStyle.getStyle().getMessageFont(), 0x505050FF, 1);
+		UIText text = new UIText(shortName, 0, 0, UIStyle.getFont("server-bar.font"), UIStyle.getInt("server-bar.fg"), 1);
 		UIServerBarEntryHover hover = new UIServerBarEntryHover(this);
 		this.anchor(text.setAnchorPoint(AnchorPoint.CENTER))
 			.anchor(hover.setAnchorPoint(AnchorPoint.EAST));
@@ -141,5 +140,17 @@ public class UIServerBarEntry extends UIBaseElement
 	public Server getServer()
 	{
 		return this.server;
+	}
+
+	@Override
+	public void changeState(UIState state) 
+	{
+		switch (state)
+		{
+			case CLICKED -> {}
+			case HOVER -> {}
+			case IDLE -> {}
+			case INACTIVE -> {}
+		}
 	}
 }
