@@ -27,6 +27,7 @@ lwjgl-stb_natives-windows    = { type = "fetchFromMaven", group_id = "org.lwjgl"
 
 [configuration.main]
 sources = [ "src/api/", "src/main/" ]
+dependencies = [ "lilac", "lwjgl", "lwjgl-glfw", "lwjgl-openal", "lwjgl-opengl", "lwjgl-stb" ]
 shaded  = [ "lilac" ]
 includes = [ "shader/" ]
 entry   = "coffee.khyonieheart.bouquet.BouquetApp"
@@ -35,10 +36,10 @@ compiler_flags.release_target = 21
 
 [configuration.linux]
 inherit      = "main"
-dependencies = [ "lilac", "lwjgl", "lwjgl-glfw", "lwjgl-openal", "lwjgl-opengl", "lwjgl-stb", "lwjgl_natives-linux", "lwjgl-glfw_natives-linux", "lwjgl-openal_natives-linux", "lwjgl-opengl_natives-linux", "lwjgl-stb_natives-linux" ]
+dependencies = [ "lwjgl_natives-linux", "lwjgl-glfw_natives-linux", "lwjgl-openal_natives-linux", "lwjgl-opengl_natives-linux", "lwjgl-stb_natives-linux" ]
 targets      = [ "targets/{configuration}/Bouquet-{version}-{configuration}.jar" ]
 
 [configuration.windows]
 inherit      = "main"
-dependencies = [ "lilac", "lwjgl", "lwjgl-glfw", "lwjgl-openal", "lwjgl-opengl", "lwjgl-stb", "lwjgl_natives-windows", "lwjgl-glfw_natives-windows", "lwjgl-openal_natives-linux", "lwjgl-opengl_natives-linux", "lwjgl-stb_natives-linux" ]
+dependencies = [ "lwjgl_natives-windows", "lwjgl-glfw_natives-windows", "lwjgl-openal_natives-linux", "lwjgl-opengl_natives-linux", "lwjgl-stb_natives-linux" ]
 targets      = [ "targets/{configuration}/Bouquet-{version}-{configuration}.jar" ]
